@@ -1,0 +1,26 @@
+{
+  "name": "comms-ps-api",
+  "version": "2.0.0",
+  "description": "OVLoop COMMS Persistent Storage API",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "local": "nodemon --inspect=0.0.0.0:9229 src/index.js",
+    "test": "jest --coverage"
+  },
+  "author": "OVLoop COMMS Team",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.1.0",
+    "nodemon": "^1.18.10",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.412.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "swagger-ui-express": "^4.0.2",
+    "xid-js": "^1.0.1"
+  }
+}

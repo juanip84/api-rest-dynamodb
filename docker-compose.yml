@@ -1,0 +1,54 @@
+version: "3.7"
+x-common-variables: &common-variables
+  NODE_ENV: local
+  AWS_ACCESS_KEY_ID: anykey
+  AWS_SECRET_ACCESS_KEY: anysecret
+  AWS_REGION: us-east-2
+services:
+  local:
+    build:
+      context: .
+    image: api-dynamodb
+    volumes:
+      - ./src:/app/src
+    container_name: api-dynamodb_local
+    environment: *common-variables
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    tty: true
+    entrypoint: ["npm", "run", "local"]
+  test:
+    build:
+      context: .
+    image: api-dynamodb
+    volumes:
+      - ./src:/app/src
+      - ./coverage/unit:/app/coverage
+    container_name: api-dynamodb_test
+    environment: *common-variables
+    tty: true
+    entrypoint: ["npm", "test"]
+  localstack:
+    image: localstack/localstack
+    container_name: api-dynamodb_localstack
+    environment:
+      SERVICES: dynamodb
+    ports:
+      - "4569:4569"
+  setup:
+    image: mesosphere/aws-cli
+    container_name: api-dynamodb_setup
+    volumes:
+      - ./setup:/setup
+    environment:
+      AWS_ACCESS_KEY_ID: anykey
+      AWS_SECRET_ACCESS_KEY: anysecret
+      AWS_DEFAULT_REGION: us-east-2
+    depends_on:
+      - localstack
+    entrypoint: [""]
+    command: ["/setup/setup.sh"]
+networks: 
+  default:
+    name: api-dynamodb

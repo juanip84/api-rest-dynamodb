@@ -1,0 +1,60 @@
+{
+    "TableName" : "messages",
+    "AttributeDefinitions": [
+        {   "AttributeName": "sender",
+            "AttributeType": "S"
+        },
+        {   "AttributeName": "receiver",
+            "AttributeType": "S"
+        },
+        {   "AttributeName": "mid",
+            "AttributeType": "S"
+        }
+    ],
+   "GlobalSecondaryIndexes": [
+     {
+        "IndexName": "mid-index",
+        "KeySchema": [
+           {
+              "AttributeName": "mid",
+              "KeyType": "HASH"
+           }
+        ],
+        "Projection": {
+           "ProjectionType": "ALL"
+        },
+        "ProvisionedThroughput": {
+           "ReadCapacityUnits": 10,
+           "WriteCapacityUnits": 10
+        }
+     },
+     {
+      "IndexName": "receiver-mid-index",
+      "KeySchema": [
+         {
+            "AttributeName": "receiver",
+            "KeyType": "HASH"
+         },
+         {
+            "AttributeName": "mid",
+            "KeyType": "RANGE"
+         }
+      ],
+      "Projection": {
+         "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+         "ReadCapacityUnits": 10,
+         "WriteCapacityUnits": 10
+      }
+   }
+  ],
+   "KeySchema": [
+        { "AttributeName": "sender", "KeyType": "HASH"},
+        { "AttributeName": "mid", "KeyType": "RANGE"}
+    ],
+    "ProvisionedThroughput": {
+        "ReadCapacityUnits": 10,
+        "WriteCapacityUnits": 10
+    }
+}

@@ -1,0 +1,165 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "2.0.0",
+        "title": "API Rest Dynamodb example",
+        "description": "Api Rest example to show the use of dynamodb, and docker-compose",
+        "license": {
+            "name": "Juan Ignacio Paz",
+            "url": "http://www.jipnet.com.ar"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "messages",
+            "description": "Messages description"
+        }
+    ],
+    "paths": {
+        "/v1/messages/sent": {
+            "get": {
+                "description": "search messages sent",
+                "summary": "search summary",
+                "operationId": "get sent",
+                "tags": [
+                    "messages"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "sender",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Userid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success!"
+                    }
+                }
+            }
+        },
+        "/v1/messages/received": {
+            "get": {
+                "description": "search messages received",
+                "summary": "search summary",
+                "operationId": "get received",
+                "tags": [
+                    "messages"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "receiver",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Userid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success!"
+                    }
+                }
+            }
+        },
+        "/v1/messages": {
+            "post": {
+                "tags": [
+                    "messages"
+                ],
+                "description": "insert message",
+                "summary": "insert message",
+                "requestBody": {
+                    "description": "message status",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "sender": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "receiver": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "mid": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "msg": {
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "ts": {
+                                        "type": "integer",
+                                        "required": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success!"
+                    }
+                }
+            },
+            "patch": {
+                "description": "update message",
+                "summary": "update msg",
+                "tags": [
+                    "messages"
+                ],
+                "requestBody": {
+                    "description": "msg",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "sender": {
+                                        "type": "string"
+                                    },
+                                    "mid": {
+                                        "type": "string"
+                                    },
+                                    "msg": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success!"
+                    }
+                }
+            }
+        }
+    },
+    "components": null
+}

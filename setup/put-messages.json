@@ -1,0 +1,37 @@
+{
+  "messages": [
+    {
+      "PutRequest": {
+        "Item": {
+          "sender": {"S" :"user1"},
+          "receiver": {"S" :"user2"},
+          "mid": {"S" :"mid1"},
+          "ts": {"N" :"102215558"},
+          "msg": {"S" :"test msg"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "sender": {"S" :"user1"},
+          "receiver": {"S" :"user3"},
+          "mid": {"S" :"mid2"},
+          "ts": {"N" :"102215559"},
+          "msg": {"S" :"test msg2"}
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "sender": {"S" :"user2"},
+          "receiver": {"S" :"user1"},
+          "mid": {"S" :"mid3"},
+          "ts": {"N" :"102215579"},
+          "msg": {"S" :"test msg3"}
+        }
+      }
+    }
+  ]
+}
