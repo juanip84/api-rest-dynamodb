@@ -60,9 +60,10 @@ class MessagesDao {
                 'sender': sender,
                 'mid': mid.toString()
             },
-            ConditionExpression: 'mid = :mid and sender = :sender',
             UpdateExpression: `set msg = :msg`,
-            ExpressionAttributeValues: { msg },
+            ExpressionAttributeValues: {
+                ':msg': msg,
+            },
             ReturnValues: 'NONE'
         };
 
