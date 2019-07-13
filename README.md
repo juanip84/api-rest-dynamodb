@@ -1,6 +1,7 @@
 # Api - Dynamodb example
 
-This is a critical API which provides long term storage for messages that went through the COMMS ecosystem.
+Api rest using dynamodb as DB.
+The idea is to show with a real example some best practices, dynamodb implementation, the use of localstack, docker-compose to run all locally and some extra things like unit tests with jest and swagger.
 
 ## Technologies/tools used
 - node js
